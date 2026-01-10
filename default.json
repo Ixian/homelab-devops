@@ -13,6 +13,11 @@
   ],
   "packageRules": [
     {
+      "description": "Group all Docker image updates into single PR",
+      "matchManagers": ["docker-compose"],
+      "groupName": "Docker images"
+    },
+    {
       "description": "Auto-merge patch and minor updates",
       "matchUpdateTypes": ["patch", "minor", "digest"],
       "automerge": true,

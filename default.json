@@ -1,6 +1,6 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": ["config:recommended", "docker:enableMajor"],
+  "extends": ["config:recommended", "docker:enableMajor", "docker:pinDigests"],
   "platform": "gitea",
   "branchPrefix": "renovate-",
   "prHourlyLimit": 20,
@@ -26,7 +26,7 @@
     },
     {
       "description": "Skip local builds",
-      "matchPackageNames": ["scriberr"],
+      "matchPackageNames": ["scriberr", "ghcr.io/ixian/homelab-agent"],
       "enabled": false
     },
     {

@@ -8,12 +8,14 @@ on:
 jobs:
   renovate:
     runs-on: ubuntu-latest
+    container:
+      image: renovate/renovate:latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
       - name: Run Renovate
-        run: npx renovate
+        run: renovate
         env:
           RENOVATE_TOKEN: ${{ secrets.RENOVATE_TOKEN }}
           RENOVATE_PLATFORM: gitea

@@ -35,6 +35,11 @@
       "description": "Group Immich updates",
       "matchPackagePatterns": ["ghcr.io/immich-app"],
       "groupName": "Immich"
+    },
+    {
+      "description": "Group VPN stack (qbittorrent depends on gluetun network)",
+      "matchPackagePatterns": ["gluetun", "qbittorrent"],
+      "groupName": "VPN Stack"
     }
   ],
   "timezone": "America/Chicago"

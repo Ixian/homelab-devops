@@ -1,7 +1,7 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": ["config:recommended", "docker:enableMajor"],
-  "platform": "forgejo",
+  "platform": "gitea",
   "prHourlyLimit": 20,
   "prConcurrentLimit": 50,
   "repositories": [
@@ -19,9 +19,9 @@
     },
     {
       "description": "Keep develop tags for *arr apps",
-      "matchPackagePatterns": ["sonarr", "radarr", "lidarr", "prowlarr"],
       "matchCurrentVersion": "develop",
-      "enabled": false
+      "enabled": false,
+      "matchPackageNames": ["/sonarr/", "/radarr/", "/lidarr/", "/prowlarr/"]
     },
     {
       "description": "Skip local builds",
@@ -30,18 +30,18 @@
     },
     {
       "description": "Group Dify updates",
-      "matchPackagePatterns": ["langgenius/dify"],
-      "groupName": "Dify"
+      "groupName": "Dify",
+      "matchPackageNames": ["/langgenius/dify/"]
     },
     {
       "description": "Group Immich updates",
-      "matchPackagePatterns": ["ghcr.io/immich-app"],
-      "groupName": "Immich"
+      "groupName": "Immich",
+      "matchPackageNames": ["/ghcr.io/immich-app/"]
     },
     {
       "description": "Group VPN stack (qbittorrent depends on gluetun network)",
-      "matchPackagePatterns": ["gluetun", "qbittorrent"],
-      "groupName": "VPN Stack"
+      "groupName": "VPN Stack",
+      "matchPackageNames": ["/gluetun/", "/qbittorrent/"]
     }
   ],
   "timezone": "America/Chicago"

@@ -16,7 +16,7 @@ jobs:
         run: npx renovate
         env:
           RENOVATE_TOKEN: ${{ secrets.RENOVATE_TOKEN }}
-          RENOVATE_PLATFORM: forgejo
+          RENOVATE_PLATFORM: gitea
           RENOVATE_ENDPOINT: https://git.planetixian.com/api/v1
           RENOVATE_CONFIG_FILE: renovate.json
           LOG_LEVEL: info

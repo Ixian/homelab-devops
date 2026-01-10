@@ -2,6 +2,8 @@
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": ["config:recommended", "docker:enableMajor"],
   "platform": "gitea",
+  "prHourlyLimit": 20,
+  "prConcurrentLimit": 50,
   "repositories": [
     "geoff/Homelab-Austin",
     "geoff/Homelab-OCI",

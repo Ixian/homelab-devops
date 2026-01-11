@@ -22,3 +22,6 @@ jobs:
           RENOVATE_ENDPOINT: https://git.planetixian.com/api/v1
           RENOVATE_CONFIG_FILE: default.json
           LOG_LEVEL: debug
+          GIT_AUTHOR_NAME: Geoff Tognetti
+          GIT_COMMITTER_NAME: Geoff Tognetti
+          RENOVATE_GIT_AUTHOR: "Geoff Tognetti <planetix@gmail.com>"

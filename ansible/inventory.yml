@@ -1,0 +1,34 @@
+all:
+  children:
+    apt_hosts:
+      hosts:
+        oci-headscale:
+          ansible_host: 129.146.52.207
+          ansible_user: ubuntu
+        oci-pangolin:
+          ansible_host: 137.131.30.57
+          ansible_user: ubuntu
+        hsb-lxc-102:
+          ansible_host: 192.168.68.102
+          ansible_user: root
+        hsb-lxc-103:
+          ansible_host: 192.168.68.103
+          ansible_user: root
+    proxmox_hosts:
+      hosts:
+        proxmox-hsb:
+          ansible_host: 192.168.68.92
+          ansible_user: root
+    opnsense_hosts:
+      hosts:
+        opnsense-austin:
+          ansible_host: 192.168.86.1
+          ansible_user: root
+        opnsense-hsb:
+          ansible_host: 192.168.68.1
+          ansible_user: root
+    homeassistant_hosts:
+      hosts:
+        ha2:
+          ansible_host: 192.168.68.10
+          ansible_user: root

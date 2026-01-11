@@ -1,0 +1,43 @@
+---
+# check-opnsense-updates.yml - Check for OPNsense updates (notify only)
+# Run: ansible-playbook -i inventory.yml check-opnsense-updates.yml
+#
+# NOTE: This playbook only CHECKS for updates, it does NOT apply them.
+# OPNsense updates should be applied manually through the web UI.
+
+- name: Check OPNsense for available updates
+  hosts: opnsense_hosts
+  gather_facts: false
+
+  tasks:
+    - name: Check for available updates
+      shell: opnsense-update -c 2>/dev/null || echo "No updates available"
+      register: opnsense_updates
+      changed_when: false
+      failed_when: false
+
+    - name: Check firmware version
+      shell: opnsense-version
+      register: opnsense_version
+      changed_when: false
+
+    - name: Display current version
+      debug:
+        msg: "{{ inventory_hostname }}: {{ opnsense_version.stdout }}"
+
+    - name: Display available updates
+      debug:
+        msg: |
+          {{ inventory_hostname }}: Updates available!
+          {{ opnsense_updates.stdout }}
+      when: "'No updates available' not in opnsense_updates.stdout"
+
+    - name: No updates notification
+      debug:
+        msg: "{{ inventory_hostname }}: No updates available"
+      when: "'No updates available' in opnsense_updates.stdout"
+
+    - name: Reminder
+      debug:
+        msg: "NOTE: Apply OPNsense updates manually via System > Firmware > Updates"
+      run_once: true

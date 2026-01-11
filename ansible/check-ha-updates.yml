@@ -1,0 +1,52 @@
+---
+# check-ha-updates.yml - Check for Home Assistant updates (notify only)
+# Run: ansible-playbook -i inventory.yml check-ha-updates.yml
+#
+# NOTE: This playbook only CHECKS for updates, it does NOT apply them.
+# Home Assistant updates should be applied through the web UI.
+
+- name: Check Home Assistant for available updates
+  hosts: homeassistant_hosts
+  gather_facts: false
+
+  tasks:
+    - name: Check Home Assistant Core version
+      shell: ha core info 2>/dev/null | grep -E 'version|update_available'
+      register: ha_core_info
+      changed_when: false
+      failed_when: false
+
+    - name: Check Home Assistant OS version
+      shell: ha os info 2>/dev/null | grep -E 'version|update_available'
+      register: ha_os_info
+      changed_when: false
+      failed_when: false
+
+    - name: Check Supervisor version
+      shell: ha supervisor info 2>/dev/null | grep -E 'version|update_available'
+      register: ha_supervisor_info
+      changed_when: false
+      failed_when: false
+
+    - name: Display Home Assistant Core status
+      debug:
+        msg: |
+          {{ inventory_hostname }} - Home Assistant Core:
+          {{ ha_core_info.stdout }}
+
+    - name: Display Home Assistant OS status
+      debug:
+        msg: |
+          {{ inventory_hostname }} - Home Assistant OS:
+          {{ ha_os_info.stdout }}
+
+    - name: Display Supervisor status
+      debug:
+        msg: |
+          {{ inventory_hostname }} - Supervisor:
+          {{ ha_supervisor_info.stdout }}
+
+    - name: Reminder
+      debug:
+        msg: "NOTE: Apply Home Assistant updates via Settings > System > Updates"
+      run_once: true
